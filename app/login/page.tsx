@@ -27,7 +27,7 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-[calc(100vh-4rem)] relative flex items-center justify-center bg-slate-50 px-4 py-12 lg:py-20">
-            <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-primary-100/60 to-indigo-100/40 rounded-full blur-3xl opacity-50 pointer-events-none -translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-primary-100/60 to-primary-100/40 rounded-full blur-3xl opacity-50 pointer-events-none -translate-y-1/2 -translate-x-1/2" />
 
             <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -35,7 +35,7 @@ export default function LoginPage() {
                 className="card max-w-md w-full rounded-card p-8 lg:p-10 shadow-card-hover relative z-10"
             >
                 <div className="mb-8">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-indigo-600 rounded-xl flex items-center justify-center mb-5 shadow-card">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-5 shadow-card">
                         <KeyRound className="h-6 w-6 text-white" />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-900 mb-1">Connexion</h2>
@@ -78,7 +78,7 @@ export default function LoginPage() {
                             />
                         </div>
                         <p className="text-xs text-slate-500 mt-1.5 text-right">
-                            <Link href="#" className="font-medium text-primary-600 hover:underline">Mot de passe oublié ?</Link>
+                            <Link href="/forgot-password" className="font-medium text-primary-600 hover:underline">Mot de passe oublié ?</Link>
                         </p>
                     </div>
 

@@ -1,112 +1,168 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
+
+const plans = [
+  {
+    name: "Forfait Basique",
+    description:
+      "Idéal pour les startups et petites structures qui veulent tester l’API à moindre coût.",
+    price: "0",
+    cta: "Créer un compte gratuit",
+    href: "/register",
+    features: [
+      "Session de découverte pour évaluer vos besoins.",
+      "Recommandations et premiers retours concrets.",
+      "Support par email ou documentation.",
+    ],
+  },
+  {
+    name: "Forfait Standard",
+    description:
+      "Pour les entreprises en croissance qui ont besoin d’un usage API soutenu.",
+    price: "99",
+    cta: "Obtenir la clé API",
+    href: "/register",
+    popular: true,
+    features: [
+      "Consultation pour définir vos objectifs d’intégration.",
+      "Analyse de vos flux, volumes et cas d’usage.",
+      "Plans d’implémentation et bonnes pratiques.",
+    ],
+  },
+  {
+    name: "Forfait Premium",
+    description:
+      "Pour les grands comptes qui veulent une solution stratégique et un accompagnement dédié.",
+    price: "Sur devis",
+    cta: "Contacter les ventes",
+    href: "/contact",
+    features: [
+      "Audit complet de votre architecture et intégrations.",
+      "Stratégie d’évolution et roadmap sur mesure.",
+      "Gestionnaire de compte dédié et SLA garanti.",
+    ],
+  },
+];
 
 export default function PricingPage() {
-    return (
-        <div className="min-h-[calc(100vh-4rem)] bg-slate-50 py-14 lg:py-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center max-w-2xl mx-auto mb-14">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4"
-                    >
-                        Obtenez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">Clé API</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-slate-600"
-                    >
-                        Commencez gratuitement, évoluez selon vos besoins. Pas de frais cachés.
-                    </motion.p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="card-hover rounded-card p-6 lg:p-8 flex flex-col"
-                    >
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">Hobby</h3>
-                        <p className="text-slate-500 text-sm mb-6">Pour tester et construire l&apos;intégration</p>
-                        <div className="mb-6">
-                            <span className="text-4xl font-extrabold text-slate-900">0€</span>
-                            <span className="text-slate-500 text-sm">/mois</span>
-                        </div>
-                        <ul className="space-y-3 mb-8 flex-1">
-                            {['1000 requêtes API / jour', 'Environnement de test', 'Support communautaire'].map((feature, i) => (
-                                <li key={i} className="flex items-center gap-2 text-sm text-slate-700">
-                                    <CheckCircle2 className="w-5 h-5 text-slate-400 shrink-0" />
-                                    {feature}
-                                </li>
-                            ))}
-                        </ul>
-                        <Link href="/register" className="btn-secondary w-full justify-center py-3">
-                            Créer compte gratuit
-                        </Link>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="rounded-card p-6 lg:p-8 bg-slate-900 text-white border-2 border-primary-500/30 shadow-card-hover relative overflow-hidden flex flex-col md:-mt-2 md:mb-2"
-                    >
-                        <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-                        <div className="absolute top-4 right-4">
-                            <span className="px-2.5 py-1 bg-primary-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">Populaire</span>
-                        </div>
-                        <h3 className="text-lg font-bold mb-1 relative z-10">Production</h3>
-                        <p className="text-slate-400 text-sm mb-6 relative z-10">Pour les entreprises en croissance</p>
-                        <div className="mb-6 flex items-baseline relative z-10">
-                            <span className="text-4xl font-extrabold">99€</span>
-                            <span className="text-slate-400 text-sm ml-1">/mois</span>
-                        </div>
-                        <ul className="space-y-3 mb-8 flex-1 relative z-10">
-                            {['1M requêtes API / jour', 'Clés API multiples', 'Webhooks illimités', 'SLA 99.9%', 'Support prioritaire 24/7'].map((feature, i) => (
-                                <li key={i} className="flex items-center gap-2 text-sm text-slate-200">
-                                    <CheckCircle2 className="w-5 h-5 text-primary-400 shrink-0" />
-                                    {feature}
-                                </li>
-                            ))}
-                        </ul>
-                        <Link href="/register" className="btn-primary w-full justify-center py-3.5 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-700 hover:to-indigo-700">
-                            Générer la clé API
-                        </Link>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="card-hover rounded-card p-6 lg:p-8 flex flex-col"
-                    >
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">Entreprise</h3>
-                        <p className="text-slate-500 text-sm mb-6">Volume sur mesure & compliance</p>
-                        <div className="mb-6">
-                            <span className="text-4xl font-extrabold text-slate-900">Sur devis</span>
-                        </div>
-                        <ul className="space-y-3 mb-8 flex-1">
-                            {['Requêtes illimitées', 'Infrastructure dédiée', 'Account Manager', 'SLA sur mesure'].map((feature, i) => (
-                                <li key={i} className="flex items-center gap-2 text-sm text-slate-700">
-                                    <CheckCircle2 className="w-5 h-5 text-slate-400 shrink-0" />
-                                    {feature}
-                                </li>
-                            ))}
-                        </ul>
-                        <button className="btn-secondary w-full justify-center py-3">
-                            Contacter les ventes
-                        </button>
-                    </motion.div>
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero sombre avec overlay */}
+      <section className="relative bg-slate-900 py-16 sm:py-20 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.06\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-80"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 to-slate-900" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3"
+          >
+            Nos tarifs
+          </motion.h1>
+          <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center justify-center gap-1.5 text-white/80 text-sm"
+            aria-label="Fil d'Ariane"
+          >
+            <Link href="/" className="hover:text-white transition-colors">
+              Accueil
+            </Link>
+            <ChevronRight className="w-4 h-4 text-white/50" />
+            <span className="text-white">Tarifs</span>
+          </motion.nav>
         </div>
-    );
+      </section>
+
+      {/* Section tarifs - fond blanc */}
+      <section className="py-14 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-sm font-medium uppercase tracking-wider text-slate-500 mb-2">
+              Plans tarifaires
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Des tarifs adaptés à vos besoins
+            </h2>
+            <p className="text-slate-600">
+              Que vous soyez une startup avec un budget serré ou une entreprise
+              qui vise une intégration complète, nous avons une offre pour vous.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative rounded-2xl border bg-white p-6 lg:p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow ${
+                  plan.popular
+                    ? "border-primary-500/40 ring-1 ring-primary-500/20"
+                    : "border-slate-200"
+                }`}
+              >
+                {plan.popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                    Populaire
+                  </span>
+                )}
+                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  {plan.name}
+                </h3>
+                <p className="text-slate-600 text-sm mb-6 flex-1">
+                  {plan.description}
+                </p>
+                <div className="mb-6">
+                  <span className="text-3xl lg:text-4xl font-bold text-slate-900">
+                    {plan.price}
+                  </span>
+                  {plan.price !== "Sur devis" && (
+                    <span className="text-slate-500 text-sm ml-1">/mois</span>
+                  )}
+                </div>
+                <Link
+                  href={plan.href}
+                  className="inline-flex justify-center items-center rounded-xl px-6 py-3.5 font-semibold text-white bg-primary-500 hover:bg-primary-600 transition-colors uppercase tracking-wide text-sm"
+                >
+                  {plan.cta}
+                </Link>
+                <ul className="mt-6 space-y-3 pt-6 border-t border-slate-100">
+                  {plan.features.map((feature, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-sm text-slate-600"
+                    >
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="text-center text-slate-600 text-sm mt-8">
+            Besoin de plus de détails ?{" "}
+            <Link
+              href="/contact"
+              className="font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-2"
+            >
+              Contactez-nous
+            </Link>
+          </p>
+        </div>
+      </section>
+
+    </div>
+  );
 }

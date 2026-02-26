@@ -54,7 +54,7 @@ export default function RegisterPage() {
 
     return (
         <div className="min-h-[calc(100vh-4rem)] relative flex items-center justify-center bg-slate-50 px-4 py-12 lg:py-20">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary-100/50 to-indigo-100/40 rounded-full blur-3xl opacity-50 pointer-events-none translate-y-1/4 translate-x-1/3" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary-100/50 to-primary-100/40 rounded-full blur-3xl opacity-50 pointer-events-none translate-y-1/4 translate-x-1/3" />
 
             <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -138,7 +138,7 @@ export default function RegisterPage() {
                             </svg>
                         </div>
                         <h3 className="text-3xl font-bold font-century mb-4 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Accédez à l'environnement de production.</h3>
-                        <p className="text-slate-400 text-lg">Intégrez nos APIs en quelques minutes. Bénéficiez de 1000 requêtes gratuites par jour dans la Sandbox.</p>
+                        <p className="text-slate-400 text-lg">Intégrez nos APIs en quelques minutes. Bénéficiez de 1000 requêtes gratuites par jour dans l'environnement de test.</p>
                     </div>
 
                     <div className="mt-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">

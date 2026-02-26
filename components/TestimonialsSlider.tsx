@@ -58,7 +58,7 @@ export default function TestimonialsSlider({ testimonials, autoPlayMs = 6000 }: 
 
     return (
         <div className="relative max-w-3xl mx-auto">
-            <div className="overflow-hidden min-h-[220px] flex items-center justify-center">
+            <div className="overflow-hidden min-h-[260px] flex items-center justify-center">
                 <AnimatePresence mode="wait" initial={false} custom={direction}>
                     <motion.div
                         key={page}
@@ -73,22 +73,27 @@ export default function TestimonialsSlider({ testimonials, autoPlayMs = 6000 }: 
                             initial={{ scale: 0.98 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 0.3 }}
-                            className="w-full card-hover rounded-card p-8 lg:p-10 bg-white border border-slate-200/80 shadow-card text-center"
+                            className="relative w-full card-hover rounded-2xl p-8 lg:p-12 bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50 text-center overflow-hidden"
                         >
-                            <Quote className="w-12 h-12 text-primary-200 mx-auto mb-5" aria-hidden />
-                            <blockquote className="text-slate-700 text-base lg:text-lg leading-relaxed mb-8">
+                            <Quote
+                                className="w-14 h-14 text-primary-200/90 mx-auto mb-6"
+                                aria-hidden
+                            />
+                            <blockquote className="text-slate-700 text-lg lg:text-xl leading-relaxed mb-10 font-medium">
                                 &ldquo;{t.quote}&rdquo;
                             </blockquote>
-                            <div className="flex items-center justify-center gap-3">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-indigo-500 flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                            <div className="flex items-center justify-center gap-4">
+                                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-base shadow-lg ring-4 ring-primary-100/50">
                                     {t.author
                                         .split(" ")
                                         .map((n) => n[0])
                                         .join("")}
                                 </div>
                                 <div className="text-left">
-                                    <p className="font-semibold text-slate-900">{t.author}</p>
-                                    <p className="text-slate-500 text-sm">
+                                    <p className="font-semibold text-slate-900 text-base">
+                                        {t.author}
+                                    </p>
+                                    <p className="text-slate-500 text-sm mt-0.5">
                                         {t.role} · {t.company}
                                     </p>
                                 </div>
@@ -111,21 +116,23 @@ export default function TestimonialsSlider({ testimonials, autoPlayMs = 6000 }: 
                     <ChevronLeft className="w-6 h-6" />
                 </motion.button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                     {testimonials.map((_, i) => (
                         <button
                             key={i}
                             type="button"
                             onClick={() => setPage([i, i > currentIndex ? 1 : -1])}
-                            className="rounded-full transition-all duration-300"
+                            className="rounded-full p-1 transition-all duration-300 hover:opacity-80"
                             aria-label={`Aller au témoignage ${i + 1}`}
                         >
                             <motion.span
-                                className="block w-2.5 h-2.5 rounded-full"
+                                className="block w-3 h-3 rounded-full"
                                 animate={{
-                                    scale: i === currentIndex ? 1.25 : 1,
+                                    scale: i === currentIndex ? 1.2 : 1,
                                     backgroundColor:
-                                        i === currentIndex ? "rgb(79 70 229)" : "rgb(203 213 225)",
+                                        i === currentIndex
+                                            ? "rgb(79 70 229)"
+                                            : "rgb(203 213 225)",
                                 }}
                                 transition={{ duration: 0.2 }}
                             />

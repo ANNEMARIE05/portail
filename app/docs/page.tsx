@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 const fetchDocSections = async () => {
     await new Promise((r) => setTimeout(r, 600)); // Simulate loading
     return [
-        { id: 'auth', title: 'Authentification', content: 'Toutes les requêtes d\'API nécessitent un en-tête Authorization. Utilisez votre clé d\'API secrète générée depuis votre Dashboard.', endpoint: 'POST /v1/auth' },
+        { id: 'auth', title: 'Authentification', content: 'Toutes les requêtes d\'API nécessitent un en-tête Authorization. Utilisez votre clé d\'API secrète générée depuis votre tableau de bord.', endpoint: 'POST /v1/auth' },
         { id: 'charges', title: 'Créer un Paiement', content: 'Pour facturer une carte de crédit ou un autre moyen de paiement, créez un objet Charge avec les informations du client.', endpoint: 'POST /v1/charges' },
         { id: 'refunds', title: 'Gérer les Remboursements', content: 'Si vous devez rendre le montant d\'un paiement à un client, créez un objet Refund. Le délai de remboursement dépend des banques.', endpoint: 'POST /v1/refunds' },
         { id: 'webhooks', title: 'Événements Webhook', content: 'Configurez des webhooks pour être notifié asynchronement des changements de statut (succès, échec) dans vos transactions.', endpoint: 'POST /v1/webhooks' },
@@ -100,7 +100,7 @@ $payapi->charges->create([
                     </div>
 
                     <div className="space-y-2">
-                        <h5 className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center"><Layers className="w-3 h-3 mr-2" /> Ressources Core</h5>
+                        <h5 className="px-3 text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center"><Layers className="w-3 h-3 mr-2" /> Ressources principales</h5>
                         {isLoading ? (
                             <div className="space-y-3 px-3">
                                 <div className="h-4 bg-slate-200 rounded animate-pulse w-3/4"></div>
@@ -229,7 +229,7 @@ $payapi->charges->create([
 
                             <div className="bg-slate-900 border-t border-slate-800 p-4 text-xs text-slate-500 font-mono text-center flex justify-between items-center px-6">
                                 <span>v2.4.0</span>
-                                <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> Systems Operational</span>
+                                <span className="flex items-center"><span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span> Systèmes opérationnels</span>
                             </div>
                         </div>
 
