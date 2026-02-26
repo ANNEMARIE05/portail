@@ -71,7 +71,6 @@ export default function FaqPage() {
         <div className="min-h-screen bg-white">
             {/* Bannière sombre */}
             <section className="relative bg-slate-800 text-white overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920')] bg-cover bg-center opacity-30" />
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-800/90" />
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center">
                     <motion.h1

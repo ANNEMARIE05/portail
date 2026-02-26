@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, Send, Phone, MapPin } from "lucide-react";
+import AnimatedDataPattern from "@/components/AnimatedDataPattern";
 
 export default function ContactPage() {
     const [submitted, setSubmitted] = useState(false);
@@ -56,13 +57,27 @@ export default function ContactPage() {
         },
     ];
 
+    const cardStagger = {
+        hidden: { opacity: 0, y: 20 },
+        visible: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: { delay: i * 0.1, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
+        }),
+    };
+
     return (
-        <div className="min-h-screen bg-slate-50">
+        <motion.div
+            className="min-h-screen bg-slate-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35 }}
+        >
             {/* Hero / Bannière */}
             <section className="relative bg-slate-800 text-white overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920')] bg-cover bg-center opacity-40" />
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-800/90" />
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <AnimatedDataPattern variant="dots" className="opacity-50" opacity={0.2} />
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -213,24 +228,29 @@ export default function ContactPage() {
                     <motion.div
                         initial="hidden"
                         animate="visible"
-                        variants={fadeIn}
-                        transition={{ delay: 0.1 }}
+                        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
                         className="space-y-6"
                     >
                         {contactCards.map((item, i) => (
-                            <a
+                            <motion.a
                                 key={item.title}
                                 href={item.href}
-                                className="flex flex-col items-center text-center bg-white rounded-card border border-slate-200/80 shadow-card p-8 hover:shadow-card-hover hover:border-primary-200/50 transition-all duration-200 group"
+                                variants={cardStagger}
+                                custom={i}
+                                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                                className="flex flex-col items-center text-center bg-white rounded-card border border-slate-200/80 shadow-card p-8 hover:shadow-card-hover hover:border-primary-200/50 transition-shadow transition-colors duration-200 group block"
                             >
-                                <span className="flex items-center justify-center w-14 h-14 rounded-full bg-primary-100 text-primary-600 mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                                <motion.span
+                                    className="flex items-center justify-center w-14 h-14 rounded-full bg-primary-100 text-primary-600 mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors"
+                                    whileHover={{ scale: 1.05 }}
+                                >
                                     <item.icon className="w-6 h-6" />
-                                </span>
+                                </motion.span>
                                 <h3 className="text-lg font-bold text-slate-900 mb-2">
                                     {item.title}
                                 </h3>
                                 <p className="text-slate-600">{item.value}</p>
-                            </a>
+                            </motion.a>
                         ))}
                     </motion.div>
                 </div>
@@ -238,7 +258,13 @@ export default function ContactPage() {
 
             {/* Section carte */}
             <section id="map" className="w-full">
-                <div className="relative w-full h-[400px] bg-slate-200 overflow-hidden rounded-none">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="relative w-full h-[400px] bg-slate-200 overflow-hidden rounded-none"
+                >
                     <iframe
                         title="Carte"
                         src="https://www.openstreetmap.org/export/embed.html?bbox=-0.15%2C51.50%2C0.15%2C51.52&layer=mapnik&marker=51.505%2C0"
@@ -247,8 +273,8 @@ export default function ContactPage() {
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                     />
-                </div>
+                </motion.div>
             </section>
-        </div>
+        </motion.div>
     );
 }

@@ -79,3 +79,29 @@
 .animate-fade-in-up {
     animation: fade-in-up 0.5s ease-out forwards;
 }
+
+/* Motifs data animés */
+@keyframes data-grid-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes data-dot-float {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+    50% { transform: translateY(-3px) scale(1.1); opacity: 0.9; }
+}
+
+@keyframes data-line-scan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    15% { opacity: 0.4; }
+    85% { opacity: 0.4; }
+    100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-data-grid-pulse {
+    animation: data-grid-pulse 4s ease-in-out infinite;
+}
+
+.animate-data-dot-float {
+    animation: data-dot-float 3s ease-in-out infinite;
+}
