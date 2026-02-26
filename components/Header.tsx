@@ -20,14 +20,17 @@ export default function Header() {
 
     return (
         <header className="bg-slate-900 border-b border-slate-700/60 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Barre de navigation */}
-                <div className="grid grid-cols-3 items-center h-16">
-                    <Link href="/" className="flex items-center gap-2.5 w-auto group shrink-0 justify-self-start">
-                        <div className="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow">
-                            <TerminalSquare className="w-5 h-5 text-white" />
+            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+                {/* Barre de navigation : flex sur mobile, grid sur desktop */}
+                <div className="flex md:grid md:grid-cols-3 items-center justify-between md:justify-stretch h-14 sm:h-16 gap-2">
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 sm:gap-2.5 min-w-0 group shrink-0 md:justify-self-start"
+                    >
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary-500 flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow shrink-0">
+                            <TerminalSquare className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
-                        <span className="font-bold text-xl tracking-tight text-white">
+                        <span className="font-bold text-sm sm:text-xl tracking-tight text-white truncate">
                             PORTAIL <span className="text-primary-300">API</span>
                         </span>
                     </Link>
@@ -74,9 +77,11 @@ export default function Header() {
                     </div>
 
                     <button
+                        type="button"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="md:hidden p-2 -mr-2 text-white hover:text-white hover:bg-white/10 rounded-btn transition-colors"
-                        aria-label="Menu"
+                        className="md:hidden flex items-center justify-center w-11 h-11 -mr-1 rounded-lg text-white hover:bg-white/10 active:bg-white/15 transition-colors touch-manipulation"
+                        aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                        aria-expanded={isMobileMenuOpen}
                     >
                         {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
@@ -91,8 +96,7 @@ export default function Header() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm md:hidden"
-                            style={{ top: "4rem" }}
+                            className="fixed left-0 right-0 bottom-0 z-40 bg-slate-900/50 backdrop-blur-sm md:hidden top-14 sm:top-16"
                             onClick={() => setIsMobileMenuOpen(false)}
                             aria-hidden
                         />
@@ -101,8 +105,7 @@ export default function Header() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -12 }}
                             transition={{ duration: 0.2 }}
-                            className="md:hidden fixed left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-card-hover mx-4 mt-2 rounded-card overflow-hidden"
-                            style={{ top: "4rem" }}
+                            className="md:hidden fixed left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-card-hover mx-3 sm:mx-4 mt-2 rounded-card overflow-hidden top-14 sm:top-16"
                         >
                             <div className="p-3 space-y-0.5">
                                 {navLinks.map((link) => (

@@ -76,9 +76,9 @@ $payapi->charges->create([
     };
 
     return (
-        <div className="flex bg-white min-h-[calc(100vh-80px)]">
+        <div className="flex bg-white min-h-[calc(100vh-56px)] sm:min-h-[calc(100vh-64px)]">
             {/* Sidebar - Plus large et aérée */}
-            <aside className="w-72 border-r border-slate-200 bg-slate-50/60 hidden lg:block overflow-y-auto shrink-0 sticky top-16 h-[calc(100vh-4rem)]">
+            <aside className="w-72 border-r border-slate-200 bg-slate-50/60 hidden lg:block overflow-y-auto shrink-0 sticky top-14 sm:top-16 h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-4rem)]">
                 <div className="p-6">
                     <div className="relative mb-8">
                         <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -126,22 +126,22 @@ $payapi->charges->create([
             </aside>
 
             {/* Main Content - Utilisation maximale de l'espace (Width étendu) */}
-            <div className="flex-1 overflow-x-hidden p-6 lg:p-12 xl:p-16">
+            <div className="flex-1 overflow-x-hidden p-4 sm:p-6 lg:p-12 xl:p-16">
                 <div className="max-w-[1200px] mx-auto">
 
-                    <div className="mb-12 border-b border-slate-200 pb-8">
-                        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">Documentation Développeur</h1>
-                        <p className="text-xl text-slate-600 max-w-3xl leading-relaxed">
+                    <div className="mb-6 sm:mb-10 lg:mb-12 border-b border-slate-200 pb-5 sm:pb-8">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-3 sm:mb-6">Documentation Développeur</h1>
+                        <p className="text-sm sm:text-base lg:text-xl text-slate-600 max-w-3xl leading-relaxed">
                             Tout ce dont vous avez besoin pour intégrer notre solution de paiement en quelques minutes.
                             Des requêtes authentifiées JSON, des SDKs performants et des webhooks temps réel.
                         </p>
                     </div>
 
                     {/* Grid Layout plus large */}
-                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-start relative">
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start relative">
 
                         {/* Text Content (Généreux) */}
-                        <div className="xl:col-span-7 prose prose-slate prose-lg max-w-none prose-a:text-primary-600">
+                        <div className="xl:col-span-7 prose prose-slate prose-sm sm:prose-lg max-w-none prose-a:text-primary-600">
                             {isLoading ? (
                                 <div className="space-y-6">
                                     <div className="h-10 bg-slate-100 rounded-lg animate-pulse w-1/2"></div>
@@ -149,10 +149,10 @@ $payapi->charges->create([
                                 </div>
                             ) : (
                                 <>
-                                    <h2 className="text-3xl font-bold text-slate-900 border-none mt-0 mb-6 font-century">
+                                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 border-none mt-0 mb-4 sm:mb-6 font-century">
                                         {sections?.find(s => s.id === activeSection)?.title}
                                     </h2>
-                                    <p className="text-slate-600 leading-relaxed bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed bg-slate-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-slate-100">
                                         {sections?.find(s => s.id === activeSection)?.content}
                                     </p>
 
@@ -204,7 +204,7 @@ $payapi->charges->create([
                             </div>
 
                             {/* Code Sandbox */}
-                            <div className="p-6 relative group min-h-[300px]">
+                            <div className="p-4 sm:p-6 relative group min-h-[240px] sm:min-h-[300px]">
                                 <button
                                     onClick={copyToClipboard}
                                     className="absolute top-4 right-4 p-2.5 rounded-lg text-slate-400 bg-slate-800 border border-slate-700 opacity-0 group-hover:opacity-100 transition-all hover:text-white hover:bg-slate-700 focus:outline-none"
@@ -220,7 +220,7 @@ $payapi->charges->create([
                                         exit={{ opacity: 0, y: -5 }}
                                         transition={{ duration: 0.15 }}
                                     >
-                                        <pre className="font-mono text-[14px] leading-relaxed text-slate-300 overflow-x-auto p-1">
+                                        <pre className="font-mono text-xs sm:text-[14px] leading-relaxed text-slate-300 overflow-x-auto p-1">
                                             <code>{codeSnippets[activeTab]}</code>
                                         </pre>
                                     </motion.div>

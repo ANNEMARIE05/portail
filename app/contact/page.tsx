@@ -5,9 +5,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, Send, Phone, MapPin } from "lucide-react";
 import AnimatedDataPattern from "@/components/AnimatedDataPattern";
+import ButtonLoader from "@/components/ButtonLoader";
 
 export default function ContactPage() {
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -17,8 +19,13 @@ export default function ContactPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsLoading(true);
+        // Simuler envoi (à remplacer par un vrai appel API)
+        setTimeout(() => {
+            setIsLoading(false);
+            setSubmitted(true);
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        }, 1000);
     };
 
     const handleChange = (
@@ -77,12 +84,12 @@ export default function ContactPage() {
             <section className="relative bg-slate-800 text-white overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-800/90" />
                 <AnimatedDataPattern variant="dots" className="opacity-50" opacity={0.2} />
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white"
+                        className="text-2xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white"
                     >
                         Contactez-nous
                     </motion.h1>
@@ -90,7 +97,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.4 }}
-                        className="mt-4 text-sm text-slate-300"
+                        className="mt-2 sm:mt-4 text-xs sm:text-sm text-slate-300"
                         aria-label="Fil d'Ariane"
                     >
                         <Link href="/" className="hover:text-white transition-colors">
@@ -103,19 +110,19 @@ export default function ContactPage() {
             </section>
 
             {/* Contenu principal : formulaire + infos */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20">
+                <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start">
                     {/* Colonne gauche : Formulaire "Prenez contact" */}
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={fadeIn}
-                        className="bg-white rounded-card border border-slate-200/80 shadow-card p-8 lg:p-10"
+                        className="bg-white rounded-card border border-slate-200/80 shadow-card p-4 sm:p-6 lg:p-10"
                     >
-                        <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-3">
+                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-2 sm:mb-3">
                             Prenez contact
                         </h2>
-                        <p className="text-slate-600 mb-6 leading-relaxed">
+                        <p className="text-slate-600 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">
                             Une question, un projet ou besoin d&apos;une démo ? Remplissez le
                             formulaire et nous vous répondrons rapidement.
                         </p>
@@ -215,10 +222,17 @@ export default function ContactPage() {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full py-3.5 rounded-btn font-semibold text-white bg-primary-600 hover:bg-primary-700 transition-colors inline-flex items-center justify-center gap-2"
+                                    disabled={isLoading}
+                                    className={`w-full py-3.5 rounded-btn font-semibold text-white bg-primary-600 hover:bg-primary-700 transition-colors inline-flex items-center justify-center gap-2 ${isLoading ? "opacity-80 cursor-not-allowed" : ""}`}
                                 >
-                                    <Send className="w-4 h-4" />
-                                    Envoyer
+                                    {isLoading ? (
+                                        <ButtonLoader label="Envoi en cours..." className="text-white" />
+                                    ) : (
+                                        <>
+                                            <Send className="w-4 h-4" />
+                                            Envoyer
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         )}
@@ -229,7 +243,7 @@ export default function ContactPage() {
                         initial="hidden"
                         animate="visible"
                         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-                        className="space-y-6"
+                        className="space-y-3 sm:space-y-5 lg:space-y-6"
                     >
                         {contactCards.map((item, i) => (
                             <motion.a
@@ -238,18 +252,18 @@ export default function ContactPage() {
                                 variants={cardStagger}
                                 custom={i}
                                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                                className="flex flex-col items-center text-center bg-white rounded-card border border-slate-200/80 shadow-card p-8 hover:shadow-card-hover hover:border-primary-200/50 transition-shadow transition-colors duration-200 group block"
+                                className="flex flex-col items-center text-center bg-white rounded-card border border-slate-200/80 shadow-card p-4 sm:p-6 lg:p-8 hover:shadow-card-hover hover:border-primary-200/50 transition-shadow transition-colors duration-200 group block"
                             >
                                 <motion.span
-                                    className="flex items-center justify-center w-14 h-14 rounded-full bg-primary-100 text-primary-600 mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors"
+                                    className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-primary-100 text-primary-600 mb-3 sm:mb-4 group-hover:bg-primary-600 group-hover:text-white transition-colors"
                                     whileHover={{ scale: 1.05 }}
                                 >
-                                    <item.icon className="w-6 h-6" />
+                                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                                 </motion.span>
-                                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 sm:mb-2">
                                     {item.title}
                                 </h3>
-                                <p className="text-slate-600">{item.value}</p>
+                                <p className="text-slate-600 text-sm sm:text-base">{item.value}</p>
                             </motion.a>
                         ))}
                     </motion.div>
@@ -263,7 +277,7 @@ export default function ContactPage() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="relative w-full h-[400px] bg-slate-200 overflow-hidden rounded-none"
+                    className="relative w-full h-[280px] sm:h-[350px] lg:h-[400px] bg-slate-200 overflow-hidden rounded-none"
                 >
                     <iframe
                         title="Carte"

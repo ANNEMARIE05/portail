@@ -52,7 +52,7 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero sombre avec overlay */}
-      <section className="relative bg-slate-900 py-16 sm:py-20 overflow-hidden">
+      <section className="relative bg-slate-900 py-10 sm:py-16 lg:py-20 overflow-hidden">
         <div
           className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.06\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-80"
           aria-hidden
@@ -62,7 +62,7 @@ export default function PricingPage() {
           <motion.h1
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3"
+            className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-2 sm:mb-3"
           >
             Nos tarifs
           </motion.h1>
@@ -70,77 +70,77 @@ export default function PricingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="flex items-center justify-center gap-1.5 text-white/80 text-sm"
+            className="flex items-center justify-center gap-1 sm:gap-1.5 text-white/80 text-xs sm:text-sm"
             aria-label="Fil d'Ariane"
           >
             <Link href="/" className="hover:text-white transition-colors">
               Accueil
             </Link>
-            <ChevronRight className="w-4 h-4 text-white/50" />
+            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/50" />
             <span className="text-white">Tarifs</span>
           </motion.nav>
         </div>
       </section>
 
       {/* Section tarifs - fond blanc */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-8 sm:py-12 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm font-medium uppercase tracking-wider text-slate-500 mb-2">
+          <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 lg:mb-12">
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-slate-500 mb-1 sm:mb-2">
               Plans tarifaires
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-2 sm:mb-4">
               Des tarifs adaptés à vos besoins
             </h2>
-            <p className="text-slate-600">
+            <p className="text-slate-600 text-sm sm:text-base">
               Que vous soyez une startup avec un budget serré ou une entreprise
               qui vise une intégration complète, nous avons une offre pour vous.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+          <div className="grid md:grid-cols-3 gap-3 sm:gap-5 lg:gap-8 max-w-6xl mx-auto items-stretch">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative rounded-2xl border bg-white p-6 lg:p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow ${
+                className={`relative rounded-xl sm:rounded-2xl border bg-white p-4 sm:p-6 lg:p-8 flex flex-col shadow-sm hover:shadow-md transition-shadow ${
                   plan.popular
                     ? "border-primary-500/40 ring-1 ring-primary-500/20"
                     : "border-slate-200"
                 }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">
+                  <span className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-primary-500 text-white text-[10px] sm:text-xs font-bold rounded-full uppercase tracking-wider">
                     Populaire
                   </span>
                 )}
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                <h3 className="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-2">
                   {plan.name}
                 </h3>
-                <p className="text-slate-600 text-sm mb-6 flex-1">
+                <p className="text-slate-600 text-xs sm:text-sm mb-4 sm:mb-6 flex-1">
                   {plan.description}
                 </p>
-                <div className="mb-6">
-                  <span className="text-3xl lg:text-4xl font-bold text-slate-900">
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">
                     {plan.price}
                   </span>
                   {plan.price !== "Sur devis" && (
-                    <span className="text-slate-500 text-sm ml-1">/mois</span>
+                    <span className="text-slate-500 text-xs sm:text-sm ml-1">/mois</span>
                   )}
                 </div>
                 <Link
                   href={plan.href}
-                  className="inline-flex justify-center items-center rounded-xl px-6 py-3.5 font-semibold text-white bg-primary-500 hover:bg-primary-600 transition-colors uppercase tracking-wide text-sm"
+                  className="inline-flex justify-center items-center rounded-xl px-4 sm:px-6 py-2.5 sm:py-3.5 font-semibold text-white bg-primary-500 hover:bg-primary-600 transition-colors uppercase tracking-wide text-xs sm:text-sm"
                 >
                   {plan.cta}
                 </Link>
-                <ul className="mt-6 space-y-3 pt-6 border-t border-slate-100">
+                <ul className="mt-4 sm:mt-6 space-y-2 sm:space-y-3 pt-4 sm:pt-6 border-t border-slate-100">
                   {plan.features.map((feature, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2.5 text-sm text-slate-600"
+                      className="flex items-start gap-2 sm:gap-2.5 text-xs sm:text-sm text-slate-600"
                     >
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />
                       {feature}
@@ -151,7 +151,7 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <p className="text-center text-slate-600 text-sm mt-8">
+          <p className="text-center text-slate-600 text-xs sm:text-sm mt-6 sm:mt-8">
             Besoin de plus de détails ?{" "}
             <Link
               href="/contact"

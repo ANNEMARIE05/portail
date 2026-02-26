@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, Phone, Mail, MapPin, Send } from "lucide-react";
+import ButtonLoader from "@/components/ButtonLoader";
 
 const faqData = [
     {
@@ -41,6 +42,7 @@ const faqData = [
 export default function FaqPage() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -51,14 +53,19 @@ export default function FaqPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
-        setFormData({
-            name: "",
-            email: "",
-            subject: "",
-            phone: "",
-            message: "",
-        });
+        setIsLoading(true);
+        // Simuler envoi (à remplacer par un vrai appel API)
+        setTimeout(() => {
+            setIsLoading(false);
+            setSubmitted(true);
+            setFormData({
+                name: "",
+                email: "",
+                subject: "",
+                phone: "",
+                message: "",
+            });
+        }, 1000);
     };
 
     const handleChange = (
@@ -72,12 +79,12 @@ export default function FaqPage() {
             {/* Bannière sombre */}
             <section className="relative bg-slate-800 text-white overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-800/90" />
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-4xl sm:text-5xl font-bold tracking-tight text-white"
+                        className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white"
                     >
                         FAQ&apos;S
                     </motion.h1>
@@ -85,7 +92,7 @@ export default function FaqPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.4 }}
-                        className="mt-3 text-sm text-slate-300"
+                        className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-300"
                         aria-label="Fil d'Ariane"
                     >
                         <Link
@@ -101,21 +108,21 @@ export default function FaqPage() {
             </section>
 
             {/* Contenu principal : deux colonnes */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                <div className="grid lg:grid-cols-5 gap-10 lg:gap-12 items-start">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-16">
+                <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-start">
                     {/* Colonne gauche : bloc contact + formulaire */}
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="lg:col-span-2 space-y-4 sm:space-y-6">
                         {/* Bloc "Prêt pour votre prochain projet" */}
                         <motion.div
                             initial={{ opacity: 0, x: -16 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-brandDark text-white rounded-card p-6 lg:p-8 shadow-card-hover"
+                            className="bg-brandDark text-white rounded-card p-4 sm:p-6 lg:p-8 shadow-card-hover"
                         >
-                            <h3 className="text-xl font-bold text-white mb-5">
+                            <h3 className="text-base sm:text-xl font-bold text-white mb-3 sm:mb-5">
                                 Prêt pour votre prochain projet ?
                             </h3>
-                            <div className="space-y-4 text-slate-200 text-sm">
+                            <div className="space-y-3 sm:space-y-4 text-slate-200 text-xs sm:text-sm">
                                 <a
                                     href="tel:+44123456789"
                                     className="flex items-start gap-3 hover:text-white transition-colors"
@@ -144,7 +151,7 @@ export default function FaqPage() {
                             initial={{ opacity: 0, x: -16 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: 0.1 }}
-                            className="bg-white rounded-card border border-slate-200 shadow-card p-6 lg:p-8"
+                            className="bg-white rounded-card border border-slate-200 shadow-card p-4 sm:p-6 lg:p-8"
                         >
                             {submitted ? (
                                 <div className="text-center py-6">
@@ -166,7 +173,7 @@ export default function FaqPage() {
                                     onSubmit={handleSubmit}
                                     className="space-y-4"
                                 >
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         <input
                                             type="text"
                                             name="name"
@@ -186,7 +193,7 @@ export default function FaqPage() {
                                             className="w-full px-4 py-2.5 rounded-btn border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 text-sm"
                                         />
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         <input
                                             type="text"
                                             name="subject"
@@ -214,10 +221,17 @@ export default function FaqPage() {
                                     />
                                     <button
                                         type="submit"
-                                        className="w-full py-3.5 rounded-btn font-semibold text-white bg-primary-600 hover:bg-primary-700 transition-colors inline-flex items-center justify-center gap-2"
+                                        disabled={isLoading}
+                                        className={`w-full py-3.5 rounded-btn font-semibold text-white bg-primary-600 hover:bg-primary-700 transition-colors inline-flex items-center justify-center gap-2 ${isLoading ? "opacity-80 cursor-not-allowed" : ""}`}
                                     >
-                                        <Send className="w-4 h-4" />
-                                        Envoyer le message
+                                        {isLoading ? (
+                                            <ButtonLoader label="Envoi en cours..." className="text-white" />
+                                        ) : (
+                                            <>
+                                                <Send className="w-4 h-4" />
+                                                Envoyer le message
+                                            </>
+                                        )}
                                     </button>
                                 </form>
                             )}
@@ -230,12 +244,12 @@ export default function FaqPage() {
                             initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.15 }}
-                            className="text-2xl lg:text-3xl font-bold text-slate-900 mb-8"
+                            className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-5 sm:mb-8"
                         >
                             Questions fréquemment posées
                         </motion.h2>
 
-                        <div className="space-y-2">
+                        <div className="space-y-1.5 sm:space-y-2">
                             {faqData.map((faq, index) => {
                                 const isOpen = openIndex === index;
                                 return (
@@ -256,7 +270,7 @@ export default function FaqPage() {
                                                     isOpen ? null : index
                                                 )
                                             }
-                                            className="w-full px-5 py-4 flex items-center justify-between text-left gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset rounded-card"
+                                            className="w-full px-3 sm:px-5 py-3 sm:py-4 flex items-center justify-between text-left gap-2 sm:gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset rounded-card"
                                         >
                                             <span
                                                 className={`font-semibold text-sm sm:text-base ${
@@ -305,7 +319,7 @@ export default function FaqPage() {
                                                         ease: "easeInOut",
                                                     }}
                                                 >
-                                                    <div className="px-5 pb-5 pt-0 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
+                                                    <div className="px-3 sm:px-5 pb-4 sm:pb-5 pt-0 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100">
                                                         {faq.answer}
                                                     </div>
                                                 </motion.div>

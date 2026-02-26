@@ -56,20 +56,20 @@ export default function TestimonialsSection({
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="py-24 lg:py-32 bg-white">
+        <section className="py-10 sm:py-16 lg:py-32 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* En-tête */}
-                <div className="text-center mb-14 lg:mb-16">
-                    <p className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">
+                <div className="text-center mb-6 sm:mb-10 lg:mb-16">
+                    <p className="text-xs sm:text-sm font-medium text-slate-500 uppercase tracking-wider mb-1 sm:mb-2">
                         {label}
                     </p>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+                    <h2 className="text-xl sm:text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight">
                         {title}
                     </h2>
                 </div>
 
                 {/* Grille de 3 cartes */}
-                <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+                <div className="grid md:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
                     {testimonials.slice(0, 3).map((t, i) => (
                         <motion.article
                             key={t.handle}
@@ -78,34 +78,34 @@ export default function TestimonialsSection({
                             whileInView="visible"
                             viewport={{ once: true, margin: "-40px" }}
                             variants={fadeIn}
-                            className="flex flex-col rounded-3xl bg-slate-100/90 overflow-hidden border border-slate-200/60"
+                            className="flex flex-col rounded-2xl sm:rounded-3xl bg-slate-100/90 overflow-hidden border border-slate-200/60"
                         >
-                            <div className="flex-1 p-6 lg:p-8 pb-4">
+                            <div className="flex-1 p-4 sm:p-6 lg:p-8 pb-3 sm:pb-4">
                                 <Quote
-                                    className="w-12 h-12 text-slate-400 mb-4"
+                                    className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-slate-400 mb-2 sm:mb-4"
                                     aria-hidden
                                 />
-                                <p className="text-slate-700 text-base lg:text-lg leading-relaxed">
+                                <p className="text-slate-700 text-sm sm:text-base lg:text-lg leading-relaxed">
                                     &ldquo;{t.quote}&rdquo;
                                 </p>
                             </div>
                             {/* Zone auteur (léger effet concave avec fond légèrement plus clair) */}
-                            <div className="px-6 lg:px-8 py-5 bg-slate-50/80 border-t border-slate-200/50 rounded-b-3xl">
-                                <div className="flex items-center gap-4">
-                                    <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-200 shrink-0 ring-2 ring-white shadow-sm">
+                            <div className="px-4 sm:px-6 lg:px-8 py-3 sm:py-5 bg-slate-50/80 border-t border-slate-200/50 rounded-b-2xl sm:rounded-b-3xl">
+                                <div className="flex items-center gap-3 sm:gap-4">
+                                    <div className="relative w-9 h-9 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-slate-200 shrink-0 ring-2 ring-white shadow-sm">
                                         <Image
                                             src={t.avatar}
                                             alt=""
                                             width={48}
                                             height={48}
-                                            className="object-cover"
+                                            className="object-cover w-full h-full"
                                         />
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="font-semibold text-slate-900 truncate">
+                                        <p className="font-semibold text-slate-900 text-sm sm:text-base truncate">
                                             {t.author}
                                         </p>
-                                        <p className="text-sm text-slate-500 truncate">
+                                        <p className="text-xs sm:text-sm text-slate-500 truncate">
                                             {t.handle}
                                         </p>
                                     </div>
@@ -116,7 +116,7 @@ export default function TestimonialsSection({
                 </div>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-center gap-2 mt-10">
+                <div className="flex items-center justify-center gap-2 mt-6 sm:mt-10">
                     {[0, 1, 2].map((i) => (
                         <button
                             key={i}
