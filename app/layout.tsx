@@ -56,6 +56,7 @@ export default function RootLayout({
                                     <h4 className="text-slate-200 font-semibold text-sm uppercase tracking-wider mb-4">Ressources</h4>
                                     <ul className="space-y-3 text-sm">
                                         <li><Link href="/faq" className="text-slate-400 hover:text-primary-400 transition-colors">FAQ</Link></li>
+                                        <li><Link href="/contact" className="text-slate-400 hover:text-primary-400 transition-colors">Contact</Link></li>
                                         <li><Link href="#" className="text-slate-400 hover:text-primary-400 transition-colors">Blog</Link></li>
                                         <li><Link href="#" className="text-slate-400 hover:text-primary-400 transition-colors">Communauté</Link></li>
                                     </ul>

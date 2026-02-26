@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Code2, Zap, HelpCircle, CreditCard, Menu, X, TerminalSquare, UserPlus } from 'lucide-react';
+import { Code2, Zap, HelpCircle, CreditCard, Menu, X, TerminalSquare, UserPlus, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
@@ -15,6 +15,7 @@ export default function Header() {
         { name: 'Documentation', path: '/docs', icon: <Code2 className="w-4 h-4 ml-2" /> },
         { name: 'Tarifs', path: '/pricing', icon: <CreditCard className="w-4 h-4 ml-2" /> },
         { name: 'FAQ', path: '/faq', icon: <HelpCircle className="w-4 h-4 ml-2" /> },
+        { name: 'Contact', path: '/contact', icon: <Mail className="w-4 h-4 ml-2" /> },
     ];
 
     return (
